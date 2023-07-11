@@ -1,0 +1,100 @@
+/* CSS Styles */
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#rectangle-strip {
+  height: 100px;
+  background-color: #FFFFFF;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 10px;
+}
+
+#logo {
+  max-height: 100px;
+  max-width: 100%;
+}
+
+#left-rectangle {
+  width: 248px;
+  height: calc(98vh - 100px);
+  background-color: #99CCFF;
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+#left-rectangle label {
+  margin-bottom: 7px;
+  font-size: 20px;
+}
+
+#dropdown-menu {
+  width: 100%;
+  font-size: 16px;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+#right-rectangle {
+  flex-grow: 1;
+  height: calc(98vh - 100px);
+  background-color: #CCCCFF;
+  display: flex;
+  flex-direction: column; /* Updated to column layout */
+  justify-content: center;
+}
+
+#selected-topic-label {
+  font-size: 26px;
+  text-align: center;
+  margin-top: 10px;
+  font-family: Arial, sans-serif;
+  color: #333333;
+  text-transform: uppercase;
+}
+
+#chat-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto; /* Added to enable vertical scrolling */
+  padding: 10px;
+}
+
+#chat-messages {
+  flex-grow: 1;
+}
+
+#chat-bar {
+  display: flex;
+  align-items: center;
+  margin-top: 20px; /* Updated margin-top value */
+}
+
+#chat-input {
+  flex-grow: 1;
+  padding: 5px;
+  font-size: 16px; /* Updated font-size value */
+}
+
+#submit-btn, #clear-btn {
+  font-size: 16px;
+  border-radius: 10px;
+  padding: 5px;
+  background-color: #336699;
+  color: #FFFFFF;
+  font-family: Segoe UI;
+  min-width: 150px;
+  margin-left: 10px;
+}

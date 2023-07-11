@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+  <title>Webpage Design</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
+</head>
+<body>
+  <div id="rectangle-strip">
+    <img id="logo" src="{% static 'images/srot.png' %}" alt="Logo">
+  </div>
+  <div style="display: flex;">
+    <div id="left-rectangle">
+      <label for="dropdown-menu">Choose your topic:</label>
+      <select id="dropdown-menu" name="dropdown">
+        <option value="" selected disabled>Select a topic</option>
+        {% for topic in topics %}
+          <option value="{{ topic.query_type }}">{{ topic.query_type }}</option>
+        {% endfor %}
+      </select>
+
+      <div id="counter-label">Submit Count: 0</div> <!-- Added counter label -->
+    </div>
+    <div id="right-rectangle">
+      <label id="selected-topic-label"></label>
+      <div id="chat-container">
+        <div id="chat-messages">
+          {% for question in questions %}
+            <p>{{ question.query }}</p>
+          {% endfor %} 
+          
+      </div>
+        <form method="post">
+          {% csrf_token %}
+          <div id="chat-bar">
+         
+            {% comment %} <textarea id="chat-input" placeholder="Type your answer" name="student_name"></textarea>  {% endcomment %}
+           
+            <input type="text" placeholder="Enter your answer" name="softage_answer"/>
+
+             <button id="submit-btn" type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="{% static 'js/script.js' %}"></script>
+
+  
+</body>
+</html> 
+
+{% comment %} <!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+  <title>Webpage Design</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
+</head>
+<body>
+  <div id="rectangle-strip">
+    <img id="logo" src="{% static 'images/srot.png' %}" alt="Logo">
+  </div>
+  <div style="display: flex;">
+    <div id="left-rectangle">
+      <label for="dropdown-menu">Choose your topic:</label>
+      <select id="dropdown-menu">
+        <option value="" selected disabled>Select a topic</option>
+        {% for topic in topics %}
+          <option value="{{ topic.query_type }}">{{ topic.query_type }}</option>
+        {% endfor %}
+      </select>
+
+      <div id="counter-label">Submit Count: 0</div> <!-- Added counter label -->
+    </div>
+    <div id="right-rectangle">
+      <label id="selected-topic-label"></label>
+      <div id="chat-container">
+        <div id="chat-messages">
+          <p id="random-question">Select a topic</p>
+        </div>
+        <form method="post">
+          {% csrf_token %}
+          <div id="chat-bar">
+            <input type="text" placeholder="Enter your answer" name="softage_answer"/>
+            <button id="submit-btn" type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var dropdown = document.getElementById("dropdown-menu");
+    var questionLabel = document.getElementById("selected-topic-label");
+    var questionContainer = document.getElementById("random-question");
+    var questions = [
+      {% for question in questions %}
+        { "query": "{{ question.query }}", "query_type": "{{ question.query_type }}" },
+      {% endfor %}
+    ];
+
+    dropdown.addEventListener("change", function() {
+      var selectedTopic = dropdown.value;
+      questionLabel.textContent = selectedTopic;
+
+      // Clear previous question
+      questionContainer.textContent = "";
+
+      // Retrieve questions for the selected topic
+      var topicQuestions = questions.filter(function(question) {
+        return question.query_type === selectedTopic;
+      });
+
+      if (selectedTopic === "") {
+        questionContainer.textContent = "Select a topic";
+      } else if (topicQuestions.length > 0) {
+        var randomIndex = Math.floor(Math.random() * topicQuestions.length);
+        var randomQuestion = topicQuestions[randomIndex].query;
+        questionContainer.textContent = randomQuestion;
+      } else {
+        questionContainer.textContent = "No questions available for this topic.";
+      }
+    });
+
+    // Hide question container on page load
+    questionContainer.style.display = "none";
+
+    // Display initial random question on page load
+    window.addEventListener("DOMContentLoaded", function() {
+      if (questions.length > 0) {
+        var randomIndex = Math.floor(Math.random() * questions.length);
+        var randomQuestion = questions[randomIndex].query;
+        questionContainer.textContent = randomQuestion;
+      } else {
+        questionContainer.textContent = "No questions available.";
+      }
+    });
+  </script>
+</body>
+</html>
+
+
+
+ {% endcomment %}
